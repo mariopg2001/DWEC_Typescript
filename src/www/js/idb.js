@@ -1,36 +1,41 @@
-export class Idb{
-	constructor(){
-
-		const peticion = indexedDB.open('LoL', 2)
-		peticion.onerror = evento => {throw 'Error al conectar indexedDB'}
-		peticion.onupgradeneeded = evento => {
-			this.conexion = evento.target.result
-			this.crear()
-        	}
-		peticion.onsuccess = evento => {this.conexion = evento.target.result}
-	}
-	crear(){
-		const tabla = this.conexion.createObjectStore('Campeones', {autoIncrement: true})
-	}
-	insertar(objeto, callback){
-		const transaccion = this.conexion.transaction(['Campeones'], 'readwrite')
-		transaccion.onerror = evento => {throw 'Error al insertar'}
-		const tabla = transaccion.objectStore('Campeones')
-		const peticion = tabla.add(objeto)
-  		peticion.onsuccess = callback
-	}
-
-	listar(callback){
-		
-		const solicitud = window.indexedDB.open('LoL')
-		solicitud.onsuccess = (evento) =>{
-			this.bd = evento.target.result;
-			console.log('Base de datos cargada')
-			const objectStore = this.bd.transaction('Campeones', 'readonly').objectStore('Campeones')
-			const solicitud = objectStore.getAll() 
-			solicitud.onsuccess = ()=> {callback(solicitud.result)}
-	}
-	
-	}
-	//buscar
-}
+"use strict";
+exports.__esModule = true;
+exports.Idb = void 0;
+var Idb = /** @class */ (function () {
+    function Idb() {
+        var _this = this;
+        var peticion = indexedDB.open('LoL', 2);
+        peticion.onerror = function (evento) { throw 'Error al conectar indexedDB'; };
+        peticion.onupgradeneeded = function (evento) {
+            _this.conexion = evento.target.result;
+            _this.crear();
+        };
+        peticion.onsuccess = function (evento) { _this.conexion = evento.target.result; };
+    }
+    Idb.prototype.buscar = function (callback) {
+        throw new Error('Method not implemented.');
+    };
+    Idb.prototype.crear = function () {
+        var tabla = this.conexion.createObjectStore('Campeones', { autoIncrement: true });
+    };
+    Idb.prototype.insertar = function (objeto, callback) {
+        var transaccion = this.conexion.transaction(['Campeones'], 'readwrite');
+        transaccion.onerror = function (evento) { throw 'Error al insertar'; };
+        var tabla = transaccion.objectStore('Campeones');
+        var peticion = tabla.add(objeto);
+        peticion.onsuccess = callback;
+    };
+    Idb.prototype.listar = function (callback) {
+        var _this = this;
+        var solicitud = window.indexedDB.open('LoL');
+        solicitud.onsuccess = function (evento) {
+            _this.bd = evento.target.result;
+            console.log('Base de datos cargada');
+            var objectStore = _this.bd.transaction('Campeones', 'readonly').objectStore('Campeones');
+            var solicitud = objectStore.getAll();
+            solicitud.onsuccess = function () { callback(solicitud.result); };
+        };
+    };
+    return Idb;
+}());
+exports.Idb = Idb;

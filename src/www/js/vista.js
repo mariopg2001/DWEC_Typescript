@@ -1,30 +1,16 @@
-/**
-	@file Contiene el modelo de la aplicación
-	@author Miguel Jaque <mjaque@fundacionloyola.es>
-	@license GPL-3.0-or-later
-**/
-
-/**
-	Implementa una vista.
-	Debería ser abstracta.
-**/
-export class Vista{
-	/**
-		Constructor de la clase
-	**/
-	constructor(div){
-		this.div = div
-		
-	}
-
-	/**
-		Muestra u oculta el div principal de la vista.
-		@param ver {Boolean} True muestra la vista y false la oculta.
-	**/
-	mostrar(ver){
-		if (ver)
-			this.div.style.display = 'block'
-		else
-			this.div.style.display = 'none'
-	}
-}
+"use strict";
+exports.__esModule = true;
+exports.Vista = void 0;
+var Vista = /** @class */ (function () {
+    function Vista(div) {
+        this.div = div;
+    }
+    Vista.prototype.mostrar = function (ver) {
+        if (ver)
+            this.div.style.display = 'block';
+        else
+            this.div.style.display = 'none';
+    };
+    return Vista;
+}());
+exports.Vista = Vista;

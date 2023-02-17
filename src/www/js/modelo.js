@@ -1,52 +1,29 @@
-/**
-	@file Contiene el modelo de la aplicación
-	@author Mario Pérez <mperezgarcia.guadalupe@alumnado.fundacionloyola.es>
-	@license GPL-3.0-or-later
-**/
-import {Idb} from './idb.js'
-
-/**
-	Clase Modelo
-	Gestiona los datos de la aplicación.
-**/
-export class Modelo{
-	/**
-		Constructor de la clase
-	**/
-	constructor(controlador){
-		
-		this.lista = [] //Array de datos
-		this.callbacks = [] //Array de callbacks para implementar el observador
-		this.controlador = controlador
-		this.idb = new Idb()
-		
-		
-	}
-	/**
-	 * Registra un objeto para informarle de los cambios en el Modelo
-	 * @param {Function} Función de callback que será llamada cuando cambien los datos
-	 **/
-	
-	/**
-	 * Ejecuta todos los callback registrados.
-	 **/
-	avisar(){
-	    for(let callback of this.callbacks)
-	    callback()
-	}
-	insertar(objeto, callback){
-		this.idb.insertar(objeto, callback)
-	}
-	listar(callback){
-		this.idb.listar(callback)
-	}
-	buscar(callback){
-		this.idb.buscar(callback)
-	}
-	
-	
-
-	
-	
-
-}
+"use strict";
+exports.__esModule = true;
+exports.Modelo = void 0;
+var idb_js_1 = require("./idb.js");
+var Modelo = /** @class */ (function () {
+    function Modelo(controlador) {
+        this.lista = []; //Array de datos
+        this.callbacks = []; //Array de callbacks para implementar el observador
+        this.controlador = controlador;
+        this.idb = new idb_js_1.Idb();
+    }
+    Modelo.prototype.avisar = function () {
+        for (var _i = 0, _a = this.callbacks; _i < _a.length; _i++) {
+            var callback = _a[_i];
+            callback();
+        }
+    };
+    Modelo.prototype.insertar = function (objeto, callback) {
+        this.idb.insertar(objeto, callback);
+    };
+    Modelo.prototype.listar = function (callback) {
+        this.idb.listar(callback);
+    };
+    Modelo.prototype.buscar = function (callback) {
+        this.idb.buscar(callback);
+    };
+    return Modelo;
+}());
+exports.Modelo = Modelo;
